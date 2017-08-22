@@ -1,4 +1,4 @@
-NAME	= fractol
+NAME	= fractal
 
 INCL	= -I./libft/includes \
 			-I./mlx \
@@ -30,7 +30,7 @@ FRAME	= -framework OpenGL -framework AppKit
 RM		= rm -rf
 MC		= make -C
 
-all: $(LIB) ftal
+all: $(LIB) $(NAME)
 
 lib: $(LIB)
 
@@ -39,12 +39,10 @@ $(LIB):
 	@$(MC) ./mlx
 
 $(ODIR)%.o: %.c
-	@$(CC) -c $(FLAG) $(INCL) -c $< -o $@
-
-ofile:
 	@mkdir -p $(ODIR)
+	@$(CC)  -c $< -o $@ $(FLAG) $(INCL)
 
-ftal: ofile $(OBJ)
+$(NAME): $(OBJ)
 	@$(CC) -o $(NAME) $(FRAME) $(OBJ) $(LIB)
 
 clean:
